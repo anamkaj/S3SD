@@ -18,7 +18,7 @@ func GetAgencyClients() (*models.ResApiDirect, error) {
 		return nil, err
 	}
 
-	url := "https://api.direct.yandex.com/json/v501/agencyclients"
+	url := fmt.Sprintf("https://%s/json/v501/agencyclients", token.URL)
 	bodyData := map[string]interface{}{
 		"method": "get",
 		"params": map[string]interface{}{

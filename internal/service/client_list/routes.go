@@ -3,7 +3,8 @@ package list_client
 import (
 	"direct/internal/models"
 	"direct/internal/request"
-	"encoding/json"
+	"direct/internal/utils"
+
 	"fmt"
 	"net/http"
 )
@@ -42,12 +43,5 @@ func (h *Handler) handleListClients(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Ошибка чтения списка  клиентов:", err)
 	}
 
-	jsonData, err := json.Marshal(data)
-	if err != nil {
-		fmt.Println("Ошибка при кодировании в JSON:", err)
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(jsonData)
+	utils.ResJson(w, http.StatusOK, data)
 }
